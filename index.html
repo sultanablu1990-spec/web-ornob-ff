@@ -1,25 +1,151 @@
 <!doctype html>
+
 <html lang="bn">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KEY UNLOCK • Step 1</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#080b12;color:#fff;min-height:100vh;display:grid;place-items:center}
-.card{width:min(92%,480px);padding:28px;border:1px solid #242b3b;border-radius:22px;background:#101522;box-shadow:0 20px 60px #0008}
-.badge{display:inline-block;padding:7px 12px;border-radius:999px;background:#182033;color:#9eb5ff;font-size:13px}
-h1{margin:16px 0 8px;font-size:30px}.muted{color:#9aa4b5}.ad{height:180px;margin:22px 0;border:1px dashed #394258;border-radius:16px;display:grid;place-items:center;color:#7f8aa0}
-button{width:100%;padding:14px;border:0;border-radius:13px;background:#fff;color:#080b12;font-weight:700;font-size:16px;cursor:pointer}
-button:disabled{opacity:.45;cursor:not-allowed}.timer{text-align:center;margin:15px 0;color:#b9c3d6}
-</style></head>
-<body><main class="card">
-<span class="badge">SECURE KEY GATE</span><h1>KEY UNLOCK</h1>
-<p class="muted">Step 1 of 2 — বিজ্ঞাপনটি দেখা শেষ হলে Continue সক্রিয় হবে।</p>
-<div class="ad">ADSTER​RA AD CODE HERE</div>
-<div class="timer" id="timer">15 সেকেন্ড অপেক্ষা করুন…</div>
-<button id="go" disabled>Continue</button>
-</main>
-<script>
-let n=15,t=document.getElementById('timer'),b=document.getElementById('go');
-let x=setInterval(()=>{n--;t.textContent=n>0?`${n} সেকেন্ড অপেক্ষা করুন…`:'Ready — Continue চাপুন';if(n<=0){clearInterval(x);b.disabled=false}},1000);
-b.onclick=()=>location.href='step2.html';
-</script></body></html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AURA ORNOB FF • Key Gate</title><style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  font-family:Arial,sans-serif;
+  background:#080b12;
+  color:#fff;
+}
+
+.card{
+  width:min(100%,430px);
+  padding:28px;
+  border:1px solid #242b3b;
+  border-radius:22px;
+  background:#101522;
+  box-shadow:0 20px 60px #0008;
+}
+
+.badge{
+  display:inline-block;
+  padding:7px 12px;
+  border-radius:999px;
+  background:#182033;
+  color:#9eb5ff;
+  font-size:13px;
+}
+
+h1{
+  margin:16px 0 8px;
+  font-size:30px;
+}
+
+.muted{
+  color:#9aa4b5;
+  line-height:1.6;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  margin:18px 0 12px;
+  border:1px solid #30394d;
+  border-radius:13px;
+  outline:none;
+  background:#080b12;
+  color:#fff;
+  font-size:16px;
+}
+
+input:focus{
+  border-color:#7f9cff;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:13px;
+  background:#fff;
+  color:#080b12;
+  font-weight:700;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.99);
+}
+
+#error{
+  min-height:22px;
+  margin-top:14px;
+  text-align:center;
+  color:#ff7b7b;
+}
+
+#success{
+  display:none;
+  margin-top:14px;
+  text-align:center;
+  color:#7dffb2;
+}
+</style></head><body><main class="card"><span class="badge">AURA ORNOB FF</span>
+
+  <h1>KEY UNLOCK</h1>  <p class="muted">
+    আপনার Access Key নিচে লিখুন।
+    সঠিক Key দিলে পরবর্তী পেজে প্রবেশ করতে পারবেন।
+  </p><input
+id="key"
+type="text"
+placeholder="Enter your key"
+autocomplete="off"
+
+«»
+
+  <button id="unlock">
+    Unlock
+  </button>  <div id="error"></div>  <div id="success">
+    ✓ Key সঠিক — প্রবেশ করা হচ্ছে...
+  </div></main><script>
+const VALID_KEY = "AURA_ORNOB_1122";
+
+const keyInput = document.getElementById("key");
+const unlockButton = document.getElementById("unlock");
+const errorBox = document.getElementById("error");
+const successBox = document.getElementById("success");
+
+function unlock(){
+  const enteredKey = keyInput.value.trim();
+
+  errorBox.textContent = "";
+  successBox.style.display = "none";
+
+  if(!enteredKey){
+    errorBox.textContent = "অনুগ্রহ করে Key লিখুন।";
+    return;
+  }
+
+  if(enteredKey !== VALID_KEY){
+    errorBox.textContent = "ভুল Key! আবার চেষ্টা করুন।";
+    return;
+  }
+
+  successBox.style.display = "block";
+  unlockButton.disabled = true;
+
+  setTimeout(function(){
+    window.location.href = "https://auraornobff.com/";
+  },1000);
+}
+
+unlockButton.addEventListener("click", unlock);
+
+keyInput.addEventListener("keydown", function(event){
+  if(event.key === "Enter"){
+    unlock();
+  }
+});
+</script></body>
+</html>
