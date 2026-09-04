@@ -58,10 +58,6 @@ input{
   font-size:16px;
 }
 
-input:focus{
-  border-color:#7f9cff;
-}
-
 button{
   width:100%;
   padding:14px;
@@ -74,29 +70,18 @@ button{
   cursor:pointer;
 }
 
-button:active{
-  transform:scale(.99);
-}
-
 #error{
   min-height:22px;
   margin-top:14px;
   text-align:center;
   color:#ff7b7b;
 }
-
-#success{
-  display:none;
-  margin-top:14px;
-  text-align:center;
-  color:#7dffb2;
-}
 </style></head><body><main class="card"><span class="badge">AURA ORNOB FF</span>
 
-  <h1>KEY UNLOCK</h1>  <p class="muted">
-    আপনার Access Key নিচে লিখুন।
-    সঠিক Key দিলে পরবর্তী পেজে প্রবেশ করতে পারবেন।
-  </p><input
+<h1>KEY UNLOCK</h1><p class="muted">
+আপনার Access Key নিচে লিখুন।
+সঠিক Key দিলে পরবর্তী পেজে প্রবেশ করতে পারবেন।
+</p><input
 id="key"
 type="text"
 placeholder="Enter your key"
@@ -104,23 +89,20 @@ autocomplete="off"
 
 «»
 
-  <button id="unlock">
-    Unlock
-  </button>  <div id="error"></div>  <div id="success">
-    ✓ Key সঠিক — প্রবেশ করা হচ্ছে...
-  </div></main><script>
+<button id="unlock">Unlock</button>
+
+<div id="error"></div></main><script>
 const VALID_KEY = "AURA_ORNOB_1122";
 
 const keyInput = document.getElementById("key");
 const unlockButton = document.getElementById("unlock");
 const errorBox = document.getElementById("error");
-const successBox = document.getElementById("success");
 
 function unlock(){
+
   const enteredKey = keyInput.value.trim();
 
   errorBox.textContent = "";
-  successBox.style.display = "none";
 
   if(!enteredKey){
     errorBox.textContent = "অনুগ্রহ করে Key লিখুন।";
@@ -132,12 +114,7 @@ function unlock(){
     return;
   }
 
-  successBox.style.display = "block";
-  unlockButton.disabled = true;
-
-  setTimeout(function(){
-    window.location.href = "https://auraornobff.com/";
-  },1000);
+  window.location.href = "success.html";
 }
 
 unlockButton.addEventListener("click", unlock);
